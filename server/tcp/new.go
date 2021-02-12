@@ -3,10 +3,12 @@ package tcp
 import (
 	"net"
 	"rcache/server/cache"
+	"rcache/server/cluster"
 )
 
 type Server struct {
 	cache.Cache
+	cluster.Node
 }
 
 func (s *Server) Listen() {
@@ -23,6 +25,6 @@ func (s *Server) Listen() {
 	}
 }
 
-func New(c cache.Cache) *Server {
-	return &Server{c}
+func New(c cache.Cache, n cluster.Node) *Server {
+	return &Server{c, n}
 }
